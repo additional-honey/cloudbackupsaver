@@ -1,12 +1,11 @@
 import RecoveryPhrase from '../screens/RecoveryPhrase'
-import Wallet from '../screens/Wallet'
 import Navigation from './components/Navigation'
+import './App.css'
 
 function App() {
   return (
     <>
       <Navigation />
-      {/* <Wallet /> */}
       <RecoveryPhrase />
     </>
   )

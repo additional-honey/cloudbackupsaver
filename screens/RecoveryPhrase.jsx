@@ -23,7 +23,6 @@ const RecoveryPhrase = () => {
       </section>
       <form>
         <textarea
-          name='recovery-phrase'
           className='w-full outline-none focus:outline-slate-400 bg-inherit border border-[#F7F7F7] rounded-lg px-6 py-3'
           placeholder='Enter your recovery phrase here.'
           cols='20'
