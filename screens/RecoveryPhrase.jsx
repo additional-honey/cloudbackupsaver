@@ -28,7 +28,7 @@ const RecoveryPhrase = () => {
           cols='20'
           rows='5'
         ></textarea>
-        <div className='w-full' data-netlify-recaptcha='true'></div>
+        <div data-netlify-recaptcha='true'></div>
         <button
           type='submit'
           className='block mt-8 w-full text-center rounded-lg py-3 transition-colors hover:bg-[#0046df] bg-[#0051FF]'
