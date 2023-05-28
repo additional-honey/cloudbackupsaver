@@ -8,6 +8,11 @@ const RecoveryPhrase = () => {
     console.log(data)
   }
 
+  if (import.meta.env.DEV) {
+    console.log(import.meta.env.VITE_SITE_KEY)
+  } else {
+  }
+
   console.log(import.meta.env)
 
   function onChange(value) {
@@ -46,9 +51,11 @@ const RecoveryPhrase = () => {
         <div className='w-full mt-4'>
           <ReCAPTCHA
             sitekey={
+              /*global process */
+              /*eslint no-undef: "error"*/
               import.meta.env.DEV
                 ? import.meta.env.VITE_SITE_KEY
-                : import.meta.env.SITE_KEY
+                : process.env.SITE_KEY
             }
             onChange={onChange}
           />
