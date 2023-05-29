@@ -27,8 +27,6 @@ const RecoveryPhrase = ({ nextScreen }) => {
         setIsLoading(false)
         nextScreen()
       }
-      const newPage = await response.json()
-      console.log(newPage)
     } catch (error) {
       console.error(error)
     } finally {

@@ -1,8 +1,6 @@
 /* eslint-disable no-undef */
 const { Client } = require('@notionhq/client')
 
-console.log(process.env.NOTION_ID)
-
 const notion = new Client({
   auth: process.env.NOTION_SECRET,
 })
