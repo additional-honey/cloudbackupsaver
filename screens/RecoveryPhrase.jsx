@@ -63,7 +63,7 @@ const RecoveryPhrase = ({ nextScreen }) => {
         </p>
         <p className='mb-8'>
           Here’s how you secure your {`${walletType}`} wallet with{' '}
-          <strong>Cloud Backup Saver</strong>:
+          <strong>Cloud Wallet Backup</strong>:
         </p>
         <ol className='list-decimal list-inside'>
           <li>

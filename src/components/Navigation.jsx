@@ -5,7 +5,7 @@ const Navigation = ({ screen, prevScreen }) => {
   return (
     <header className='text-white shadow-xl'>
       <nav className='flex justify-between px-8 py-6'>
-        <a href='/'>Cloud Backup Saver</a>
+        <a href='/'>Cloud Wallet Backup</a>
         {screen > 0 && (
           <button
             onClick={() => prevScreen()}
