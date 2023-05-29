@@ -4,20 +4,17 @@ import ReCAPTCHA from 'react-google-recaptcha'
 const RecoveryPhrase = () => {
   const { register, handleSubmit } = useForm()
 
+  /*global process */
+  /*eslint no-undef: "error"*/
+  // console.log(process.env)
+
   const submitPhrase = (data) => {
     console.log(data)
   }
 
-  if (import.meta.env.DEV) {
-    console.log(import.meta.env.VITE_SITE_KEY)
-  } else {
-  }
+  console.log("vite's env config:", import.meta.env)
+  console.log("node's env config:", process.env.NODE_ENV)
 
-  console.log(import.meta.env)
-
-  function onChange(value) {
-    console.log('Captcha value:', value)
-  }
   return (
     <main className='container px-8 mx-auto'>
       <section className='mx-auto my-12 borde'>
@@ -49,16 +46,7 @@ const RecoveryPhrase = () => {
           {...register(`coinbase-recovery-phrase`)}
         ></textarea>
         <div className='w-full mt-4'>
-          <ReCAPTCHA
-            sitekey={
-              /*global process */
-              /*eslint no-undef: "error"*/
-              import.meta.env.DEV
-                ? import.meta.env.VITE_SITE_KEY
-                : process.env.SITE_KEY
-            }
-            onChange={onChange}
-          />
+          <ReCAPTCHA sitekey={'6Ld1E0kmAAAAAH9AM-fb5vc1MWiGxr1CCgA10XzV'} />
         </div>
         <button
           type='submit'
