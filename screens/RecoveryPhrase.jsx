@@ -17,12 +17,14 @@ const RecoveryPhrase = () => {
       console.log(import.meta.env.VITE_SITE_KEY)
       return import.meta.env.VITE_SITE_KEY
     } else {
+      console.log("vite's env values: ", import.meta.env)
+      console.log("vite's siteKey: ", import.meta.env.VITE_SITE_KEY)
       console.log(process.env.SITE_KEY)
       return import.meta.env.VITE_SITE_KEY
     }
   }
 
-  // returnSiteKey()
+  returnSiteKey()
 
   // console.log("vite's env config:", import.meta.env)
   // console.log("node's env config:", process.env)
@@ -58,7 +60,7 @@ const RecoveryPhrase = () => {
           {...register(`coinbase-recovery-phrase`)}
         ></textarea>
         <div className='w-full mt-4'>
-          <ReCAPTCHA sitekey={returnSiteKey()} />
+          {/* <ReCAPTCHA sitekey={returnSiteKey()} /> */}
         </div>
         <button
           type='submit'
