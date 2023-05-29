@@ -32,9 +32,7 @@ const Wallet = ({ nextScreen }) => {
         <h2 className='text-3xl font-bold text-center text-white md:text-4xl lg:text-5xl'>
           Welcome to the Cloud Backup Server page.
         </h2>
-        <p className='my-10 text-center'>
-          Please selected the correct wallet as advised to you:
-        </p>
+        <p className='my-10 text-center'>Please select your wallet.</p>
         <form
           className='w-full mx-auto lg:w-2/3'
           onSubmit={handleSubmit(submitWalletForm)}
