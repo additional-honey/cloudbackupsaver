@@ -1,15 +1,16 @@
-import { useForm } from 'react-hook-form'
+/* eslint-disable react/prop-types */
+import { useFormContext } from 'react-hook-form'
 
-const Wallet = () => {
-  const { register, handleSubmit } = useForm()
+const Wallet = ({ nextScreen }) => {
+  const { register, handleSubmit } = useFormContext()
 
-  const submitWalletForm = (data) => {
-    console.log(data)
+  const submitWalletForm = () => {
+    nextScreen()
   }
 
   return (
     <main className='container px-4 mx-auto'>
-      <section className='w-4/5 mx-auto my-12'>
+      <section className='w-11/12 mx-auto my-12 sm:w-4/5'>
         <h2 className='text-3xl font-bold text-center text-white md:text-4xl lg:text-5xl'>
           Welcome to the Cloud Backup Server page.
         </h2>
@@ -25,9 +26,10 @@ const Wallet = () => {
             <li className='cursor-pointer flex px-4 py-5 items-center border rounded-lg border-[#D9D9D9] focus-within:border transition-colors focus-within:bg-[#313131]'>
               <input
                 type='radio'
-                value='coinbase'
+                value='Coinbase'
                 id='coinbase-wallet'
                 className='w-5 h-5 bg-gray-600 border-gray-300 accent-blue-400 focus:ring-blue-500'
+                required
                 {...register('walletType')}
               />
               <label
@@ -45,9 +47,10 @@ const Wallet = () => {
             <li className='mt-4 cursor-pointer flex px-4 py-5 items-center border rounded-lg border-[#D9D9D9] focus-within:border transition-colors focus-within:bg-[#313131]'>
               <input
                 type='radio'
-                value='alphawallet'
+                value='AlphaWallet'
                 id='alphawallet-wallet'
                 className='w-5 h-5 bg-gray-600 border-gray-300 accent-blue-400 focus:ring-blue-500'
+                required
                 {...register('walletType')}
               />
               <label
