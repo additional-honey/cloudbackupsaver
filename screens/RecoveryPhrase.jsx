@@ -12,8 +12,14 @@ const RecoveryPhrase = () => {
     console.log(data)
   }
 
+  // function returnSiteKey () {
+  //   if(import.meta.env.DEV || process.env.NODE_ENV !== 'development') {
+  //     return import.meta.env.
+  //   }
+  // }
+
   console.log("vite's env config:", import.meta.env)
-  console.log("node's env config:", process.env.NODE_ENV)
+  console.log("node's env config:", process.env)
 
   return (
     <main className='container px-8 mx-auto'>
