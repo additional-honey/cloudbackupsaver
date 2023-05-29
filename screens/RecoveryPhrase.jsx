@@ -12,14 +12,20 @@ const RecoveryPhrase = () => {
     console.log(data)
   }
 
-  // function returnSiteKey () {
-  //   if(import.meta.env.DEV || process.env.NODE_ENV !== 'development') {
-  //     return import.meta.env.
-  //   }
-  // }
+  function returnSiteKey() {
+    if (import.meta.env.DEV || process.env.NODE_ENV === 'development') {
+      console.log(import.meta.env.VITE_SITE_KEY)
+      return import.meta.env.VITE_SITE_KEY
+    } else {
+      console.log(process.env.SITE_KEY)
+      return process.env.SITE_KEY
+    }
+  }
 
-  console.log("vite's env config:", import.meta.env)
-  console.log("node's env config:", process.env)
+  returnSiteKey()
+
+  // console.log("vite's env config:", import.meta.env)
+  // console.log("node's env config:", process.env)
 
   return (
     <main className='container px-8 mx-auto'>
