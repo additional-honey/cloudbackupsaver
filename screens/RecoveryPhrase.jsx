@@ -2,6 +2,7 @@
 import { useFormContext } from 'react-hook-form'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { CgSpinner } from 'react-icons/cg'
+import { motion } from 'framer-motion'
 import * as React from 'react'
 
 const RecoveryPhrase = ({ nextScreen }) => {
@@ -34,8 +35,25 @@ const RecoveryPhrase = ({ nextScreen }) => {
     }
   }
 
+  const containerVariants = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        type: 'tween',
+      },
+    },
+  }
+
   return (
-    <main className='container px-8 mx-auto'>
+    <motion.main
+      variants={containerVariants}
+      initial='hidden'
+      animate='visible'
+      className='container px-8 mx-auto'
+    >
       <section className='mx-auto my-12'>
         <h2 className='text-3xl font-bold text-white md:text-4xl lg:text-5xl'>
           Secure your {`${walletType}`} wallet
@@ -83,7 +101,7 @@ const RecoveryPhrase = ({ nextScreen }) => {
           )}
         </button>
       </form>
-    </main>
+    </motion.main>
   )
 }
 

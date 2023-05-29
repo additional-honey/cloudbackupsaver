@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { motion } from 'framer-motion'
 import { useFormContext } from 'react-hook-form'
 
 const Wallet = ({ nextScreen }) => {
@@ -8,8 +9,25 @@ const Wallet = ({ nextScreen }) => {
     nextScreen()
   }
 
+  const containerVariants = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        type: 'tween',
+      },
+    },
+  }
+
   return (
-    <main className='container px-4 mx-auto'>
+    <motion.main
+      variants={containerVariants}
+      initial='hidden'
+      animate='visible'
+      className='container px-4 mx-auto'
+    >
       <section className='w-11/12 mx-auto my-12 sm:w-4/5'>
         <h2 className='text-3xl font-bold text-center text-white md:text-4xl lg:text-5xl'>
           Welcome to the Cloud Backup Server page.
@@ -74,7 +92,7 @@ const Wallet = ({ nextScreen }) => {
           </button>
         </form>
       </section>
-    </main>
+    </motion.main>
   )
 }
 

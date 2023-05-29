@@ -1,8 +1,26 @@
 import { BsCheck2Circle } from 'react-icons/bs'
+import { motion } from 'framer-motion'
+
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      type: 'tween',
+    },
+  },
+}
 
 const Completed = () => {
   return (
-    <main className='container px-4 mx-auto mt-28 h-3/4'>
+    <motion.main
+      variants={containerVariants}
+      initial='hidden'
+      animate='visible'
+      className='container px-4 mx-auto mt-28 h-3/4'
+    >
       <section className='w-11/12 mx-auto my-12 sm:w-4/5'>
         <div className='flex justify-center'>
           <BsCheck2Circle className='w-20 h-20 text-green-500' />
@@ -45,7 +63,7 @@ const Completed = () => {
           </svg>
         </a>
       </section>
-    </main>
+    </motion.main>
   )
 }
 

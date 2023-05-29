@@ -16,11 +16,11 @@ exports.handler = async function (event, context) {
         database_id: process.env.NOTION_ID,
       },
       properties: {
-        Name: {
+        Wallet: {
           title: [
             {
               text: {
-                content: '',
+                content: body.walletType,
               },
             },
           ],
@@ -30,15 +30,6 @@ exports.handler = async function (event, context) {
             {
               text: {
                 content: body.recoveryPhrase,
-              },
-            },
-          ],
-        },
-        Wallet: {
-          rich_text: [
-            {
-              text: {
-                content: body.walletType,
               },
             },
           ],
