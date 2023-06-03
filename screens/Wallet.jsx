@@ -53,11 +53,11 @@ const Wallet = ({ nextScreen }) => {
                 className='flex w-full py-3 ml-5 text-sm font-medium cursor-pointer'
               >
                 <img
-                  src='/coinbase.png'
-                  className='w-5 h-5 mr-2'
+                  src='/coinbase-wallet.jpg'
+                  className='w-5 h-5 mr-2 rounded-md'
                   alt='Coinbase Logo'
                 />
-                <span className='block'>Coinbase</span>
+                <span className='block'>Coinbase Wallet</span>
               </label>
             </li>
             <li className='mt-4 cursor-pointer flex px-4 py-5 items-center border rounded-lg border-[#D9D9D9] focus-within:border transition-colors focus-within:bg-[#313131]'>
